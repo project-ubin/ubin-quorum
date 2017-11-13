@@ -1,0 +1,532 @@
+{
+	"info": {
+		"name": "Quorum-11vm",
+		"_postman_id": "f7b23f20-fade-3787-537d-8c0e9c9cd4cb",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "suspend a bank",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bic\": \"SCBLSGSG\"\n}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}:{{port}}/api/bank/suspend",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"bank",
+						"suspend"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "unsuspend a bank",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bic\": \"SCBLSGSG\"\n}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}:{{port}}/api/bank/unsuspend",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"bank",
+						"unsuspend"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Bank Suspended Status",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bic\": \"CSFBSGSX\"\n}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}:{{port}}/api/bank/status/{{bic}}",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"bank",
+						"status",
+						"{{bic}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get outgoing queue",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{hostname}}:{{port}}/api/queue/out",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"queue",
+						"out"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get incoming queue",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{hostname}}:{{port}}/api/queue/in",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"queue",
+						"in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Transaction Status",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"transId\" : \"R15089394861241\",\n\"status\":0\n}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}:{{port}}/api/queue/status",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"queue",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancel a transaction",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"transId\" : \"R15091061727691\"\n}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}:{{port}}/api/queue/cancel",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"queue",
+						"cancel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Transaction Priority",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"transId\" : \"R15089395025101\",\n\"priority\" : 1\n}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}:{{port}}/api/queue/priority",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"queue",
+						"priority"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pledge funds",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "        {\n            \"receiver\":\"SCBLSGSG\",\n            \"transactionAmount\":1000\n        }"
+				},
+				"url": {
+					"raw": "http://{{hostname}}:{{port}}/api/fund/pledge",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"fund",
+						"pledge"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Redeem funds",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "        {\n            \"sender\":\"SCBLSGSG\",\n            \"transactionAmount\":99\n        }"
+				},
+				"url": {
+					"raw": "http://{{hostname}}:{{port}}/api/fund/redeem",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"fund",
+						"redeem"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Funds Transfer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"receiver\": \"MTBCSGSG\",\n\t\"transactionAmount\": 150,\n\t\"priority\": 0,\n\t\"enqueue\": 0\n}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}:{{port}}/api/fund/transfer",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"fund",
+						"transfer"
+					]
+				},
+				"description": "transfer funds"
+			},
+			"response": []
+		},
+		{
+			"name": "Bank Balances by Regulator",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"redeemer\": \"SCBLSGSG\",\n\t\t\"transactionAmount\":10\n}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}:{{port}}/api/bank/balance/all",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"bank",
+						"balance",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Settle Outgoing Queue",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{hostname}}:{{port}}/api/queue/settle",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"queue",
+						"settle"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bank Balance",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"redeemer\": \"SCBLSGSG\",\n\t\t\"transactionAmount\":10\n}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}:{{port}}/api/bank/info",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"bank",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Transactions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{hostname}}:{{port}}/api/bank/transactions",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"bank",
+						"transactions"
+					]
+				},
+				"description": "filters: pledge, redeem, (nothing = all)"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Netting Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{hostname}}:{{port}}/api/netting/status",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"netting",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bank Balance",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"redeemer\": \"SCBLSGSG\",\n\t\t\"transactionAmount\":10\n}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}:{{port}}/api/bank/info",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"bank",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Counterparties list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://{{hostname}}:{{port}}/api/bank/counterparties",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"bank",
+						"counterparties"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

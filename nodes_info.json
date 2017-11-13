@@ -1,0 +1,44 @@
+{
+    "0": {
+        "constellation_pub": "BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo=",
+        "eth_accounts": [
+            "0xed9d02e382b34818e88b88a309c7fe71e65f419d"
+        ]
+    },
+    "1": {
+        "constellation_pub": "QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc=",
+        "eth_accounts": [
+            "0xca843569e3427144cead5e4d5999a3d0ccf92b8e"
+        ]
+    },
+    "2": {
+        "constellation_pub": "1iTZde/ndBHvzhcl7V68x44Vx7pl8nwx9LqnM/AfJUg=",
+        "eth_accounts": [
+            "0x0fbdc686b912d7722dc86510934589e0aaf3b55a"
+        ]
+    },
+    "3": {
+        "constellation_pub": "oNspPPgszVUFw0qmGFfWwh1uxVUXgvBxleXORHj07g8=",
+        "eth_accounts": [
+            "0x9186eb3d20cbd1f5f992a950d808c4495153abd5"
+        ]
+    },
+    "4": {
+        "constellation_pub": "R56gy4dn24YOjwyesTczYa8m5xhP6hF2uTMCju/1xkY=",
+        "eth_accounts": [
+            "0x0638e1574728b6d862dd5d3a3e0942c3be47d996"
+        ]
+    },
+    "5": {
+        "constellation_pub": "UfNSeSGySeKg11DVNEnqrUtxYRVor4+CvluI8tVv62Y=",
+        "eth_accounts": [
+            "0x3c4d88eda074762cf753cdd61229cfe1f1f63f6c"
+        ]
+    },
+    "6": {
+        "constellation_pub": "ROAZBWtSacxXQrOe3FGAqJDyJjFePR5ce4TSIzmJ0Bc=",
+        "eth_accounts": [
+            "0x46f028b9621f21946ed1d60d5d2c33fca41252db"
+        ]
+    }
+}
