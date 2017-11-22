@@ -343,6 +343,7 @@ $ ./initStash.sh 10 2000 3000 4000 5000 6000 7000 8000 9000 1000 1200 1400 1500
 # D. DApp Setup
 ### Initial Setup of DApp
 1\. Each bank VM node will need to be setup with its own DApp instance. Within each VM, go to the home directory
+
 2\. Clone the git repo for the DApp to each bank VM and the deployment node. You may need to provide your credentials.
 
 ```sh
