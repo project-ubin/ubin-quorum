@@ -85,8 +85,8 @@ The VM setup for this document assumes VM nx01 is the Coordinator node and MAS R
 ```sh
 $ cd ~/ubin-quorum-setup/binaries/setup
 $ ./cleanup_process.sh
-$ ps –alef | grep geth # you should not see any geth instances running
-$ ps –alef | grep constellation # you should not see any constellation instances running
+$ ps -alef | grep geth # you should not see any geth instances running
+$ ps -alef | grep constellation # you should not see any constellation instances running
 $ cd ~/ubin-quorum-setup/binaries/QuorumNetworkManager
 
 # if you are doing a re-setup and you will need to reattach to the existing screen instance
@@ -503,8 +503,8 @@ cd ~/ubin-quorum-setup/binaries/setup
 2\. Check if the ports used by geth and constellation are closed
 
 ```
-netstat –n | grep 8545
-netstat –n | grep 2200
+netstat -n | grep 8545
+netstat -n | grep 2200
 ```
 
 3\. If yes, execute the following
@@ -521,7 +521,7 @@ Note, port clearing on the server may take longer, can take up to a few minutes
 1\. Navigate to the respective folder
 ```
 cd ~/ubin-quorum-setup/binaries/quorum-genesis
-sudo npm –g install
+sudo npm -g install
 ```
 
 2\. Confirm the installation by executing the below statement
