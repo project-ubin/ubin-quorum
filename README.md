@@ -22,7 +22,7 @@ Additional notes:
 
 3\. Node v8.x.x is installed for all the VMs
 
-4\. Npm v5.x.x is instaled for all the VMs
+4\. Npm v5.x.x is installed for all the VMs
 
 5\. Java 8 installed in Central Bank VM
 
@@ -32,7 +32,7 @@ Additional notes:
 raft-http                           TCP 40000
 geth-communicationNode              TCP 50000
 geth-node                           TCP 20000
-DEVp2p                              TCP 30301 or 30303
+DEVp2p                              TCP 30301
 constellation-network               TCP 9000
 rpc                                 TCP 20010
 API                                 TCP 3000
