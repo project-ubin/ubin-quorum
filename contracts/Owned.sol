@@ -1,6 +1,6 @@
 pragma solidity ^0.4.11;
 
-contract Owned{
+contract Owned {
   address owner;
 
   function Owned() {
@@ -8,7 +8,10 @@ contract Owned{
   }
 
   modifier onlyOwner() {
-    if(msg.sender!=owner) throw; _;
+    if (msg.sender!=owner) {
+        throw; 
+    }
+    _;
   }
 
   function getOwner() constant returns (address) {
