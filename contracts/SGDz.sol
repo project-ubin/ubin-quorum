@@ -2,7 +2,6 @@
 import "./Owned.sol";
 import "./ZSLPrecompile.sol";
 
-
 contract SGDz is Owned { // to be deployed by MAS
 
   // ZSL contract
@@ -40,9 +39,8 @@ contract SGDz is Owned { // to be deployed by MAS
   {
     if (shieldedPayments[_pmtRef].receiver == _participant) {
       return shieldedPayments[_pmtRef].receiverProposal;
-    } else {
-      return shieldedPayments[_pmtRef].senderProposal;
     }
+    return shieldedPayments[_pmtRef].senderProposal;
   }
 
   function getAmountHash(bytes32 _pmtRef) constant returns (bytes32) {
@@ -89,7 +87,9 @@ contract SGDz is Owned { // to be deployed by MAS
     shieldedPayments[_pmtRef].sender = msg.sender;
     shieldedPayments[_pmtRef].receiver = _receiver;
     shieldedPayments[_pmtRef].amountHash = _amountHash;
-    if (!gridlocked) AmountHash(_pmtRef, _amountHash, msg.sender, _receiver);
+    if (!gridlocked) {
+      AmountHash(_pmtRef, _amountHash, msg.sender, _receiver);
+    }
   }
 
   // called right before a balance update in z contract
@@ -171,8 +171,12 @@ contract SGDz is Owned { // to be deployed by MAS
 
   function proofNotExpired(bytes32 _pmtRef) internal constant returns (bool) {
     ShieldedPayment spmt = shieldedPayments[_pmtRef];
-    if (spmt.receiverProposal.startBalanceHash != shieldedBalances[spmt.receiver]) return false;
-    if (spmt.senderProposal.startBalanceHash != shieldedBalances[spmt.sender]) return false;
+    if (spmt.receiverProposal.startBalanceHash != shieldedBalances[spmt.receiver]) {
+      return false;
+    }
+    if (spmt.senderProposal.startBalanceHash != shieldedBalances[spmt.sender]) {
+      return false;
+    }
     return true;
   }
 
@@ -185,7 +189,9 @@ contract SGDz is Owned { // to be deployed by MAS
     for (uint i = 0; i < participants.length; i++) {
       bytes32[] qIdx = proposalQueue[participants[i]].qIdx;
       for (uint j = 0; j < qIdx.length; j++) {
-        if (!proofCompleted(qIdx[j])) throw;
+        if (!proofCompleted(qIdx[j])) {
+          throw;
+        }
         shieldedPayments[qIdx[j]].processed = true;
       }
     }

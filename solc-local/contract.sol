@@ -6,7 +6,9 @@ contract Owned{
   }
 
   modifier onlyOwner() {
-    if(msg.sender!=owner) throw; _
+    if (msg.sender!=owner) {
+        throw; _; 
+    }
   }
 
   function getOwner() constant returns (address) {
@@ -217,9 +219,8 @@ contract SGDz is Owned { // to be deployed by MAS
   {
     if (shieldedPayments[_pmtRef].receiver == _participant) {
       return shieldedPayments[_pmtRef].receiverProposal;
-    } else {
-      return shieldedPayments[_pmtRef].senderProposal;
     }
+    return shieldedPayments[_pmtRef].senderProposal;
   }
 
   function getAmountHash(bytes32 _pmtRef) constant returns (bytes32) {
@@ -243,7 +244,7 @@ contract SGDz is Owned { // to be deployed by MAS
 
   modifier notProcessed (bytes32 _pmtRef) {
     require(!shieldedPayments[_pmtRef].processed);
-    _
+    _;
   }
 
   function SGDz() {
@@ -266,7 +267,9 @@ contract SGDz is Owned { // to be deployed by MAS
     shieldedPayments[_pmtRef].sender = msg.sender;
     shieldedPayments[_pmtRef].receiver = _receiver;
     shieldedPayments[_pmtRef].amountHash = _amountHash;
-    if (!gridlocked) AmountHash(_pmtRef, _amountHash, msg.sender, _receiver);
+    if (!gridlocked) {
+        AmountHash(_pmtRef, _amountHash, msg.sender, _receiver);
+    }
   }
 
   // called right before a balance update in z contract
@@ -299,9 +302,9 @@ contract SGDz is Owned { // to be deployed by MAS
       enqueueProposal(_pmtRef);
     } else { // normal payment, proposal is accepted right away
       if (proofCompleted(_pmtRef) && proofNotExpired(_pmtRef)) { // atomic transaction
-  shieldedBalances[shieldedPayments[_pmtRef].sender] =
+  shieldedBalances[shieldedPayments[_pmtRef].sender] = 
     shieldedPayments[_pmtRef].senderProposal.endBalanceHash;
-  shieldedBalances[shieldedPayments[_pmtRef].receiver] =
+  shieldedBalances[shieldedPayments[_pmtRef].receiver] = 
     shieldedPayments[_pmtRef].receiverProposal.endBalanceHash;
   shieldedPayments[_pmtRef].processed = true;
   ProposalCompleted(_pmtRef, shieldedPayments[_pmtRef].sender, shieldedPayments[_pmtRef].receiver);
@@ -313,7 +316,7 @@ contract SGDz is Owned { // to be deployed by MAS
 
   function enqueueProposal(bytes32 _pmtRef) internal {
     // check chaining condition
-    bytes32[] qIdx = proposalQueue[tx.origin].qIdx;
+    bytes32[] storage qIdx = proposalQueue[tx.origin].qIdx;
     if (qIdx.length == 0) { // proposal queue is empty
       require(shieldedBalances[tx.origin] == getProposal(_pmtRef, tx.origin).startBalanceHash);
     } else {
@@ -347,9 +350,13 @@ contract SGDz is Owned { // to be deployed by MAS
   }
 
   function proofNotExpired(bytes32 _pmtRef) internal constant returns (bool) {
-    ShieldedPayment spmt = shieldedPayments[_pmtRef];
-    if (spmt.receiverProposal.startBalanceHash != shieldedBalances[spmt.receiver]) return false;
-    if (spmt.senderProposal.startBalanceHash != shieldedBalances[spmt.sender]) return false;
+    ShieldedPayment storage spmt = shieldedPayments[_pmtRef];
+    if (spmt.receiverProposal.startBalanceHash != shieldedBalances[spmt.receiver]) {
+        return false;
+    }
+    if (spmt.senderProposal.startBalanceHash != shieldedBalances[spmt.sender]) {
+        return false;
+    }
     return true;
   }
 
@@ -360,15 +367,17 @@ contract SGDz is Owned { // to be deployed by MAS
   // for netting and batch processing; called before settle() in PaymentAgent
   function verifyBatchedProposal() {
     for (uint i = 0; i < participants.length; i++) {
-      bytes32[] qIdx = proposalQueue[participants[i]].qIdx;
+      bytes32[] storage qIdx = proposalQueue[participants[i]].qIdx;
       for (uint j = 0; j < qIdx.length; j++) {
-  if (!proofCompleted(qIdx[j])) throw;
+  if (!proofCompleted(qIdx[j])) { 
+      throw;
+  }
   shieldedPayments[qIdx[j]].processed = true;
       }
     }
     // Now all proof chains are verified; update shielded balance to what's proposed
     for (uint k = 0; k < participants.length; k++) {
-      ProposalQueue q = proposalQueue[participants[k]];
+      ProposalQueue storage q = proposalQueue[participants[k]];
       bytes32 finalProposalId = q.qIdx[q.qIdx.length-1];
       address p_ = participants[k];
       shieldedBalances[p_] = getProposal(finalProposalId, p_).endBalanceHash;
